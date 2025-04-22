@@ -71,65 +71,72 @@
                             </p>
                         </a>
                     </li>
+               
                     <li class="nav-item menu-open">
-                        <a href="{{ url('admin/list') }}" class="nav-link active">
-                            <i class="nav-icon bi bi-person-circle"></i>
-                            <p>
-                                Admin
-                                <i class="nav-arrow bi bi-chevron-right"></i>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item menu-open">
-                        <a href="{{ url('student/list') }}" class="nav-link active">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link active">
                             <i class="nav-icon bi bi-person-lines-fill"></i>
                             <p>
-                                Manage Students
+                                Manage Users
                                 <i class="nav-arrow bi bi-chevron-right"></i>
                             </p>
                         </a>
                     </li>
+
                     <li class="nav-item menu-open">
-                        <a href="{{ url('/subjects') }}" class="nav-link">
-                            <i class="nav-icon bi bi-book"></i>
+                        <a href="{{ route('admin.organizers.index') }}" class="nav-link active">
+                            <i class="nav-icon bi bi-person-lines-fill"></i>
                             <p>
-                                Manage Subjects
+                                Manage Organizer
                                 <i class="nav-arrow bi bi-chevron-right"></i>
                             </p>
                         </a>
+                    </li>
 
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="nav-icon bi bi-pencil-square"></i>
-                            <p>Manage Marks</p>
+                    <li class="nav-item menu-open">
+                        <a class="nav-link" href="{{ route('admin.events.eventindex') }}">
+                            <i class="nav-icon bi bi-person-lines-fill"></i>
+                            <p>
+                                Manage Events
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
                         </a>
                     </li>
-                @elseif (auth::user()->user_type == 'student')
+
+
+                    @elseif (auth::user()->user_type == 'organizer')
                     <li class="nav-item menu-open">
-                        <a href="{{ url('student/dashboard') }}" class="nav-link active">
+                        <a href="{{ url('/organizer/dashboard') }}" class="nav-link active">
                             <i class="nav-icon bi bi-speedometer"></i>
                             <p>
                                 Dashboard
                                 <i class="nav-arrow bi bi-chevron-right"></i>
                             </p>
+                        </a>
+                    </li>
+                
+                    <li class="nav-item menu-open">
+                        <a href="{{ route('organizer.events.create') }}" class="nav-link active">
+                            <i class="nav-icon bi bi-calendar-plus"></i>
                             <p>
-                                Student
+                                Create Event
                                 <i class="nav-arrow bi bi-chevron-right"></i>
                             </p>
                         </a>
                     </li>
+
+                    
+                
                     <li class="nav-item menu-open">
-                        <a href="{{ route('student.report', auth()->user()->student->id) }}" class="nav-link active">
-                            <i class="nav-icon bi bi-speedometer"></i>
+                        <a href="{{ route('organizer.events.index') }}" class="nav-link active">
+                            <i class="nav-icon bi bi-calendar-check"></i>
                             <p>
-                                View Performance
+                                My Events
                                 <i class="nav-arrow bi bi-chevron-right"></i>
                             </p>
                         </a>
                     </li>
                 @endif
+                
             </ul>
             <!--end::Sidebar Menu-->
         </nav>

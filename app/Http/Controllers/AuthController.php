@@ -12,6 +12,28 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function register(Request $request)
+    {
+      return view('auth.register');
+    }
+    public function authregister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'user_type' => 'required|in:organizer,attendee',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'user_type' => $request->user_type,
+        ]);
+    
+        return view('auth.register')->with('sucess',"User Registered Successfully");
+    }
     // Show the login page
     public function login()
     {
